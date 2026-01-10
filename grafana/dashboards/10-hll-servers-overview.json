@@ -18,95 +18,9 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
   "panels": [
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "fieldMinMax": true,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#4e4e4e",
-                "value": 0
-              },
-              {
-                "color": "dark-red",
-                "value": 1
-              },
-              {
-                "color": "light-red",
-                "value": 6
-              },
-              {
-                "color": "light-orange",
-                "value": 21
-              },
-              {
-                "color": "dark-orange",
-                "value": 43
-              },
-              {
-                "color": "green",
-                "value": 66
-              },
-              {
-                "color": "dark-green",
-                "value": 75
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 8,
-        "x": 0,
-        "y": 0
-      },
-      "id": 2,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.3.1",
-      "targets": [
-        {
-          "editorMode": "builder",
-          "expr": "hll_crcon_player_count",
-          "legendFormat": "{{server_id}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Spieler",
-      "type": "stat"
-    },
     {
       "datasource": {
         "type": "prometheus",
@@ -145,7 +59,7 @@
       "gridPos": {
         "h": 5,
         "w": 8,
-        "x": 8,
+        "x": 0,
         "y": 0
       },
       "id": 3,
@@ -217,7 +131,7 @@
       "gridPos": {
         "h": 5,
         "w": 8,
-        "x": 16,
+        "x": 8,
         "y": 0
       },
       "id": 4,
@@ -249,6 +163,164 @@
         }
       ],
       "title": "Packetloss",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 2
+              },
+              {
+                "color": "super-light-red",
+                "value": 5
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "editorMode": "builder",
+          "expr": "network_jitter",
+          "legendFormat": "{{server_id}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Jitter",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "fieldMinMax": true,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#4e4e4e",
+                "value": 0
+              },
+              {
+                "color": "dark-red",
+                "value": 1
+              },
+              {
+                "color": "light-red",
+                "value": 6
+              },
+              {
+                "color": "light-orange",
+                "value": 21
+              },
+              {
+                "color": "dark-orange",
+                "value": 43
+              },
+              {
+                "color": "green",
+                "value": 66
+              },
+              {
+                "color": "dark-green",
+                "value": 75
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 8,
+        "x": 0,
+        "y": 5
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "editorMode": "builder",
+          "expr": "hll_crcon_player_count",
+          "legendFormat": "{{server_id}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Spieler",
       "type": "stat"
     },
     {
@@ -378,10 +450,6 @@
                 "value": "percent"
               },
               {
-                "id": "custom.lineWidth",
-                "value": 2
-              },
-              {
                 "id": "custom.thresholdsStyle",
                 "value": {
                   "mode": "dashed"
@@ -419,78 +487,6 @@
           {
             "matcher": {
               "id": "byFrameRefID",
-              "options": "B"
-            },
-            "properties": [
-              {
-                "id": "custom.axisPlacement",
-                "value": "hidden"
-              },
-              {
-                "id": "custom.lineStyle",
-                "value": {
-                  "dash": [
-                    0,
-                    3,
-                    3
-                  ],
-                  "fill": "dot"
-                }
-              },
-              {
-                "id": "custom.fillOpacity",
-                "value": 4
-              },
-              {
-                "id": "custom.fillOpacity",
-                "value": 4
-              },
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "dark-blue",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byFrameRefID",
-              "options": "C"
-            },
-            "properties": [
-              {
-                "id": "custom.axisPlacement",
-                "value": "hidden"
-              },
-              {
-                "id": "custom.lineStyle",
-                "value": {
-                  "dash": [
-                    0,
-                    3,
-                    3
-                  ],
-                  "fill": "dot"
-                }
-              },
-              {
-                "id": "custom.fillOpacity",
-                "value": 4
-              },
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "#585858",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byFrameRefID",
               "options": "E"
             },
             "properties": [
@@ -514,6 +510,25 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#00ff52",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.axisSoftMax",
+                "value": 15
+              }
+            ]
           }
         ]
       },
@@ -521,7 +536,7 @@
         "h": 13,
         "w": 24,
         "x": 0,
-        "y": 5
+        "y": 10
       },
       "id": 1,
       "options": {
@@ -575,9 +590,22 @@
           "expr": "network_traceroute_num_hops",
           "hide": false,
           "instant": false,
-          "legendFormat": "num_hops - {{server_id}}",
+          "legendFormat": "traceroute_num_hops - {{server_id}}",
           "range": true,
           "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "network_jitter",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "jitter - {{server_id}}",
+          "range": true,
+          "refId": "B"
         }
       ],
       "title": "Netzwerk",
@@ -599,5 +627,5 @@
   "timezone": "browser",
   "title": "HLL Serverübersicht",
   "uid": "hll-servers-overview",
-  "version": 3
+  "version": 4
 }

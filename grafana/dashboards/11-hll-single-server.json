@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -122,6 +122,67 @@
             "mode": "absolute",
             "steps": [
               {
+                "color": "#727272",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "dthms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "editorMode": "builder",
+          "expr": "hll_crcon_game_time{server_id=\"$server\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Spielzeit",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
                 "color": "green",
                 "value": 0
               },
@@ -146,7 +207,7 @@
       "gridPos": {
         "h": 5,
         "w": 4,
-        "x": 4,
+        "x": 8,
         "y": 0
       },
       "id": 3,
@@ -199,6 +260,78 @@
                 "value": 0
               },
               {
+                "color": "#EAB839",
+                "value": 2
+              },
+              {
+                "color": "super-light-red",
+                "value": 5
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 12,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.3.1",
+      "targets": [
+        {
+          "editorMode": "builder",
+          "expr": "network_jitter{server_id=\"$server\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Jitter",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
                 "color": "yellow",
                 "value": 5
               },
@@ -219,7 +352,7 @@
       "gridPos": {
         "h": 5,
         "w": 4,
-        "x": 8,
+        "x": 16,
         "y": 0
       },
       "id": 4,
@@ -251,67 +384,6 @@
         }
       ],
       "title": "Packetloss",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#727272",
-                "value": 0
-              }
-            ]
-          },
-          "unit": "dthms"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 12,
-        "y": 0
-      },
-      "id": 5,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "12.3.1",
-      "targets": [
-        {
-          "editorMode": "builder",
-          "expr": "hll_crcon_game_time{server_id=\"$server\"}",
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "Spielzeit",
       "type": "stat"
     },
     {
@@ -439,10 +511,6 @@
               {
                 "id": "unit",
                 "value": "percent"
-              },
-              {
-                "id": "custom.lineWidth",
-                "value": 2
               },
               {
                 "id": "custom.thresholdsStyle",
@@ -577,6 +645,25 @@
                 }
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "F"
+            },
+            "properties": [
+              {
+                "id": "custom.axisSoftMax",
+                "value": 15
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#00ff52",
+                  "mode": "fixed"
+                }
+              }
+            ]
           }
         ]
       },
@@ -614,7 +701,7 @@
           "expr": "network_ping_avg{server_id=\"$server\"}",
           "hide": false,
           "instant": false,
-          "legendFormat": "network_ping_avg",
+          "legendFormat": "ping_avg",
           "range": true,
           "refId": "D"
         },
@@ -625,7 +712,7 @@
           },
           "editorMode": "builder",
           "expr": "network_packet_loss{server_id=\"$server\"}",
-          "legendFormat": "network_packet_loss",
+          "legendFormat": "packet_loss",
           "range": true,
           "refId": "A"
         },
@@ -665,9 +752,22 @@
           "expr": "network_traceroute_num_hops{server_id=\"$server\"}",
           "hide": false,
           "instant": false,
-          "legendFormat": "network_traceroute_num_hops",
+          "legendFormat": "traceroute_num_hops",
           "range": true,
           "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "builder",
+          "expr": "network_jitter{server_id=\"$server\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "jitter",
+          "range": true,
+          "refId": "F"
         }
       ],
       "title": "Netzwerk in Relation zu HLL",
@@ -706,5 +806,5 @@
   "timezone": "browser",
   "title": "HLL Serverdetails",
   "uid": "hll-single-server",
-  "version": 15
+  "version": 16
 }
