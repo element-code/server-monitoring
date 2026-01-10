@@ -1,0 +1,15 @@
+global:
+  run_interval_seconds: 10
+
+servers:
+  - hostname: ${SERVER_1_HOSTNAME}
+    resolvers:
+      hll-crcon:
+        api_key: ${RESOLVER_HLL_CRCON_1_API_KEY}
+        base_url: ${RESOLVER_HLL_CRCON_1_BASE_URL}
+
+  - hostname: ${SERVER_2_HOSTNAME}
+    resolvers:
+      hll-crcon:
+        api_key: ${RESOLVER_HLL_CRCON_2_API_KEY}
+        base_url: ${RESOLVER_HLL_CRCON_2_BASE_URL}
