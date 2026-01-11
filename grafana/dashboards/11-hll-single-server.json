@@ -573,10 +573,6 @@
                 "value": 4
               },
               {
-                "id": "custom.fillOpacity",
-                "value": 4
-              },
-              {
                 "id": "color",
                 "value": {
                   "fixedColor": "dark-blue",
@@ -627,15 +623,7 @@
             "properties": [
               {
                 "id": "custom.axisSoftMax",
-                "value": 15
-              },
-              {
-                "id": "custom.fillOpacity",
-                "value": 10
-              },
-              {
-                "id": "custom.axisColorMode",
-                "value": "text"
+                "value": 20
               },
               {
                 "id": "color",
@@ -654,7 +642,7 @@
             "properties": [
               {
                 "id": "custom.axisSoftMax",
-                "value": 15
+                "value": 20
               },
               {
                 "id": "color",

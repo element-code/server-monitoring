@@ -70,9 +70,11 @@ GRAFANA_ADMIN_USER=admin
 # no $, }, ' or " characters allowed!
 GRAFANA_ADMIN_PASSWORD=qC-1-h5m15jq;ttC6pr6LP9GaF8U#,F
 ```
+The password env-variable is only read once. If you want to change it later, use the following commands:
+- `docker exec -it server-monitoring-grafana-1 grafana cli admin reset-admin-password <PASSWORD_HERE>`
+- `docker compose down && docker compose up --detach --build`
 
 ## Updates
-- `docker-compose down`
-- `git fetch --tags`
-- `git checkout $(git tag -l --contains HEAD | tail -n1)`
-- `docker-compose up -d --build`
+- `docker compose down`
+- `git fetch --tags && git checkout $(git tag -l --contains HEAD | tail -n1)`
+- `docker compose up --detach --build`

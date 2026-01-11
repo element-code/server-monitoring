@@ -492,11 +492,7 @@
             "properties": [
               {
                 "id": "custom.axisSoftMax",
-                "value": 15
-              },
-              {
-                "id": "custom.fillOpacity",
-                "value": 10
+                "value": 20
               },
               {
                 "id": "custom.axisColorMode",
@@ -526,7 +522,7 @@
               },
               {
                 "id": "custom.axisSoftMax",
-                "value": 15
+                "value": 20
               }
             ]
           }
