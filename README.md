@@ -75,6 +75,7 @@ The password env-variable is only read once. If you want to change it later, use
 - `docker compose down && docker compose up --detach --build`
 
 ## Updates
+- `cd server-monitoring`
 - `docker compose down`
 - `git fetch --tags && git checkout $(git tag -l --contains HEAD | tail -n1)`
 - `docker compose up --detach --build`
