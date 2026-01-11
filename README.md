@@ -2,7 +2,7 @@
 
 ## Installation
 We need docker, docker-compose and git installed on your system.
-- `git clone https://github.com:element-code/server-monitoring.git`
+- `git clone https://github.com/element-code/server-monitoring.git`
 - `cd server-monitoring`
 - `git fetch --tags`
 - `git checkout $(git tag -l --contains HEAD | tail -n1)`
@@ -10,7 +10,7 @@ We need docker, docker-compose and git installed on your system.
 - Edit the `config.yml` file to your needs, see [configuration](#configuration).
 - `cp example.env .env`
 - Edit the `.env` file to your needs, see [configuration](#configuration).
-- `docker-compose up -d --build`
+- `docker compose up --detach --build`
 
 ## Configuration
 When you change the configuration, you need to restart the containers:
@@ -50,7 +50,7 @@ servers:
 #### Debugging
 If something doesn't work as expected, give it a few minutes to resolve.
 - Did you restart the containers after changing the configuration?
-- Check the logs of the data-collector: `docker logs data-collector`
+- Check the logs of the data-collector: `docker logs server-monitoring_data-collector`
 
 ### Authentication
 
