@@ -1,25 +1,34 @@
-import asyncio
 import json
+import os
 import re
 import subprocess
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+
+import idna
+
 from resolver.resolver import Resolver
 from resolver.run_results import Result, SkippedRun
-from shared.shared import dump
+from shared.shared import now
+
+BASE_STORAGE_PATH = "/storage/traceroutes"
+DOMAIN_RE = re.compile(r"^[a-z0-9.-]+$")
 
 
 class NetworkTracerouteResolver(Resolver):
     resolver_id = "network-traceroute"
     default_interval = 60
 
-    def run(self, server: "Server", last_result: Result|None):
-        if last_result and (datetime.now() < last_result.timestamp + timedelta(seconds=self.default_interval)):
+    def run(self, server: "Server", last_result: Result | None):
+        timestamp = now()
+        if last_result and (timestamp < last_result.timestamp + timedelta(seconds=self.default_interval)):
             return SkippedRun(self, f"last mtr run < {self.default_interval}s ago")
 
         self.logger.debug(f"Performing traceroute to '{server.hostname}'")
 
         mtr_result = self._run_mtr(server.hostname)
-        print(self._format_mtr_text(mtr_result["hops"]))
+        mtr_text = self._format_mtr_text(mtr_result["hops"])
+        file_path = self._store_mtr_output(server.hostname, mtr_text, timestamp)
+        self.logger.debug(f"Stored traceroute at '{file_path}'")
 
         return Result(
             metrics={
@@ -28,21 +37,11 @@ class NetworkTracerouteResolver(Resolver):
                 "worst_loss": mtr_result["worst_loss"],
                 "worst_latency": mtr_result["worst_latency"],
             },
-            timestamp=datetime.now(),
+            timestamp=timestamp,
             resolver=self
         )
 
     def _run_mtr(self, host: str, count: int = 10):
-        """
-        Run MTR in JSON report mode and parse output.
-
-        Returns:
-            dict with:
-                hops: list of dicts {hop, loss, sent, avg, host}
-                num_hops: int
-                worst_loss: float
-                worst_latency: float (ms)
-        """
         try:
             proc = subprocess.run(
                 ["mtr", "--json", "-c", str(count), "-n", host],
@@ -116,3 +115,31 @@ class NetworkTracerouteResolver(Resolver):
             )
 
         return "\n".join(table_lines)
+
+    def _normalize_server_id(self, hostname: str) -> str:
+        hostname = hostname.strip().lower()
+
+        if hostname.endswith("."):
+            hostname = hostname[:-1]
+
+        try:
+            hostname = idna.encode(hostname).decode("ascii")
+        except idna.IDNAError as e:
+            raise ValueError(f"Invalid IDN hostname: {hostname}") from e
+
+        if not DOMAIN_RE.match(hostname):
+            raise ValueError(f"Unsafe hostname for filesystem use: {hostname}")
+
+        return hostname.replace(":", "-")
+
+    def _store_mtr_output(self, server_id: str, text: str, timestamp: datetime) -> str:
+        timestamp_utc = timestamp.astimezone(timezone.utc)
+        dir_path = os.path.join(BASE_STORAGE_PATH, self._normalize_server_id(server_id))
+        file_path = os.path.join(dir_path, f"{timestamp_utc.strftime("%Y-%m-%dT%H-%M-%SZ")}.txt")
+
+        os.makedirs(dir_path, exist_ok=True)
+
+        with open(file_path, "w", encoding="utf-8") as f:
+            f.write('Collected at: ' + timestamp.isoformat() + '\n' + text)
+
+        return file_path

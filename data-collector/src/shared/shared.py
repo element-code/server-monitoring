@@ -1,7 +1,10 @@
 import logging
+import os
 import re
+import time
 from datetime import datetime
 from logging import LogRecord
+from zoneinfo import ZoneInfo
 
 
 class LogFormatter(logging.Formatter):
@@ -67,7 +70,7 @@ class Printable:
         return f"{self.__class__.__name__}({attributes})"
 
 
-def dump(obj,  indent=0):
+def dump(obj, indent=0):
     spacer = "  " * indent
     if obj is None:
         print(f"{spacer}NoneType: None")
@@ -92,3 +95,26 @@ def dump(obj,  indent=0):
             dump(v, indent + 2)
     else:
         print(f"{spacer}{type(obj).__name__}: {repr(obj)}")
+
+
+def get_local_timezone() -> ZoneInfo:
+    tz_name = os.environ.get("TZ")
+
+    if tz_name:
+        try:
+            return ZoneInfo(tz_name)
+        except Exception:
+            pass
+
+    offset_hours = -time.timezone // 3600
+    try:
+        return ZoneInfo(f"Etc/GMT{'-' if offset_hours > 0 else '+'}{abs(offset_hours)}")
+    except Exception:
+        pass
+
+    return ZoneInfo("UTC")
+
+
+def now() -> datetime:
+    tz = get_local_timezone()
+    return datetime.now(tz)

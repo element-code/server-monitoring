@@ -1,5 +1,4 @@
 import statistics
-from datetime import datetime
 
 from ping3 import ping
 
@@ -42,6 +41,5 @@ class NetworkResolver(Resolver):
                 "jitter": jitter,
                 "packet_loss": packet_loss,
             },
-            timestamp=datetime.now(),
             resolver=self,
         )

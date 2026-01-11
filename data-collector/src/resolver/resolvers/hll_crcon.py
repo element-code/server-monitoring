@@ -1,4 +1,3 @@
-from datetime import datetime
 import requests
 
 from resolver.resolver import Resolver
@@ -9,7 +8,7 @@ from shared.cache import LabeledMetric
 class HLLCrconResolver(Resolver):
     resolver_id = "hll-crcon"
 
-    def run(self, server: "Server", last_result: Result|None):
+    def run(self, server: "Server", last_result: Result | None):
         state_result = self._query_rcon("get_gamestate")
         status_result = self._query_rcon("get_status")
 
@@ -20,7 +19,6 @@ class HLLCrconResolver(Resolver):
                 "current_map": LabeledMetric(1, state_result['result']['current_map']['map']['id']),
                 "game_mode": LabeledMetric(1, state_result['result']['current_map']['game_mode']),
             },
-            timestamp=datetime.now(),
             resolver=self
         )
 
