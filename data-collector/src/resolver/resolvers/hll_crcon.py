@@ -15,8 +15,7 @@ class HLLCrconResolver(Resolver):
         return Result(
             metrics={
                 "player_count": status_result['result']['current_players'],
-                "game_time": state_result['result']['match_time'] - state_result['result']['time_remaining'],
-                "current_map": LabeledMetric(1, state_result['result']['current_map']['map']['id']),
+                "game_time": LabeledMetric(state_result['result']['match_time'] - state_result['result']['time_remaining'], state_result['result']['current_map']['map']['id']),
                 "game_mode": LabeledMetric(1, state_result['result']['current_map']['game_mode']),
             },
             resolver=self
